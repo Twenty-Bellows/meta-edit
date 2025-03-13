@@ -17,4 +17,17 @@ if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-require_once __DIR__ . '/includes/samples.php';
+add_action('enqueue_block_editor_assets', function () {
+
+	$editor_assets = include plugin_dir_path( __FILE__ ) . 'build/editor.asset.php';
+
+	wp_enqueue_script(
+		'meta-edit-editor-script',
+		plugins_url('build/editor.js', __FILE__),
+		$editor_assets['dependencies'],
+		$editor_assets['version'],
+		true
+	);
+});
+
+require plugin_dir_path( __FILE__ ) . '/includes/samples.php';
