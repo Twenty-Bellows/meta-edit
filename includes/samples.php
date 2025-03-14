@@ -16,10 +16,18 @@ function add_sample_meta() {
 	'show_in_rest' => true,
     ));
 
+    register_post_meta('post', 'a_color_field', array(
+	'type' => 'string',
+	'description' => 'Another color field',
+	'single' => true,
+	'show_in_rest' => true,
+    ));
+
     add_post_type_support('post', 'meta-edit', array(
 	'a_custom_text_field' => 'text',
 	'another_custom_text_field' => 'textarea',
-	'a_wrong_custom_text_field' => 'text'
+	'a_wrong_custom_text_field' => 'text',
+	'a_color_field' => 'color',
     ));
 
 }
