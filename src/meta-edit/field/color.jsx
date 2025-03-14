@@ -1,3 +1,10 @@
+/**
+ * 
+ * This is the renderer for color fields in meta-edit.
+ * It is used if the field type is 'color'.
+ * 
+ */
+
 import { ColorPalette } from '@wordpress/components';
 import { Label } from './label';
 import { addFilter } from '@wordpress/hooks';

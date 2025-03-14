@@ -1,9 +1,11 @@
 import { registerPlugin } from '@wordpress/plugins';
 import MetaFieldsPanel from './metaFieldsPanel';
-require( './field/textarea' );
-require( './field/color' );
-require( './field/media' );
-require( './field/relationship' );
+
+import './field/default';
+import './field/textarea';
+import './field/color';
+import './field/media';
+import './field/relationship';
 
 registerPlugin( 'meta-edit', {
 	icon: 'palmtree',

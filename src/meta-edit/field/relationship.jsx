@@ -1,6 +1,14 @@
+/**
+ * 
+ * This is the renderer for relationship fields in meta-edit.
+ * It is used if the field type is set to the slug of a post type.
+ * All posts of that type will be available for selection.
+ * The value stored is the ID of the selected post.
+ * 
+ */
+
 import { addFilter } from '@wordpress/hooks';
 import { useSelect } from '@wordpress/data';
-import { store as coreStore } from '@wordpress/core-data'
 import { ComboboxControl } from '@wordpress/components' 
 
 addFilter(

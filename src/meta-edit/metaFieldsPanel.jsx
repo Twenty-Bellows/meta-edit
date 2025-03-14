@@ -1,53 +1,41 @@
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { useSelect } from '@wordpress/data';
-import { applyFilters, addFilter } from '@wordpress/hooks';
-import { TextControl } from '@wordpress/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const MetaFieldsPanel = () => {
-	const postType = useSelect(
-		( select ) => select( 'core/editor' ).getCurrentPostType(),
-		[]
-	);
 
-	const supports = useSelect(
-		( select ) => select( 'core' ).getPostType( postType ).supports,
-		[ postType ]
-	);
-
-	if (
-		! supports ||
-		! supports[ 'meta-edit' ] ||
-		! supports[ 'meta-edit' ][ 0 ]
-	) {
-		return;
-	}
-
-	const fields = supports[ 'meta-edit' ][ 0 ];
-
-	const postId = useSelect(
-		( select ) => select( 'core/editor' ).getCurrentPostId(),
-		[]
-	);
-
-	const existingMetaFields = useSelect(
+	const { postType, fields, postId, existingMetaFields } = useSelect(
 		( select ) => {
-			return select( 'core' ).getEditedEntityRecord(
+			const postType = select( 'core/editor' ).getCurrentPostType();
+			const supports = select( 'core' ).getPostType( postType )?.supports;
+			if ( ! supports || ! supports[ 'meta-edit' ] || ! supports[ 'meta-edit' ][ 0 ] ) {
+				return null;
+			}
+			const fields = supports[ 'meta-edit' ][ 0 ];
+			const postId = select( 'core/editor' ).getCurrentPostId();
+			const existingMetaFields = select( 'core' ).getEditedEntityRecord(
 				'postType',
 				postType,
 				postId
 			)?.meta;
+
+			return { postType, fields, postId, existingMetaFields };
 		},
-		[ postType, postId ]
+		[]
 	);
 
-	const nicePostType = postType
+	if ( ! fields ) {
+		return null;
+	}
+
+	const prettyPostType = postType
 		.replace( /_/g, ' ' )
 		.replace( /\b\w/g, ( char ) => char.toUpperCase() );
 
 	return (
 		<PluginDocumentSettingPanel
 			name={ 'meta-edit-panel' }
-			title={ `${ nicePostType } Meta` }
+			title={ `${ prettyPostType } Meta` }
 		>
 			{ Object.entries( fields )
 				.filter( ( [ key ] ) => {
@@ -81,21 +69,3 @@ const MetaFieldsPanel = () => {
 };
 
 export default MetaFieldsPanel;
-
-addFilter(
-	'meta-edit.field.component',
-	'meta-edit.field.component.renderer',
-	( renderer, { label, value, onChange } ) => {
-		return (
-			renderer || (
-				<TextControl
-					label={ label }
-					value={ value }
-					onChange={ onChange }
-					__next40pxDefaultSize
-					__nextHasNoMarginBottom
-				/>
-			)
-		);
-	}
-);

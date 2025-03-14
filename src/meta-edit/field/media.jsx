@@ -1,3 +1,11 @@
+/**
+ * 
+ * Renderer for media fields in meta-edit.
+ * It is used if the field type is 'media'.
+ * This field provides a URL string provided from selecting an asset from the Media Library.
+ * 
+ */
+
 import { Button } from '@wordpress/components';
 import { MediaUpload } from '@wordpress/block-editor';
 import { addFilter } from '@wordpress/hooks';
