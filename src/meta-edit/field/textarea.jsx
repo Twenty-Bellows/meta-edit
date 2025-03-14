@@ -1,8 +1,8 @@
 /**
- * 
+ *
  * This is the renderer for textarea fields in meta-edit.
  * It is used if the field type is 'textarea'.
- * 
+ *
  */
 
 import { TextareaControl } from '@wordpress/components';

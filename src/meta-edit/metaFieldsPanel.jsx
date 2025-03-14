@@ -3,12 +3,15 @@ import { useSelect } from '@wordpress/data';
 import { applyFilters } from '@wordpress/hooks';
 
 const MetaFieldsPanel = () => {
-
 	const { postType, fields, postId, existingMetaFields } = useSelect(
 		( select ) => {
 			const postType = select( 'core/editor' ).getCurrentPostType();
 			const supports = select( 'core' ).getPostType( postType )?.supports;
-			if ( ! supports || ! supports[ 'meta-edit' ] || ! supports[ 'meta-edit' ][ 0 ] ) {
+			if (
+				! supports ||
+				! supports[ 'meta-edit' ] ||
+				! supports[ 'meta-edit' ][ 0 ]
+			) {
 				return null;
 			}
 			const fields = supports[ 'meta-edit' ][ 0 ];
