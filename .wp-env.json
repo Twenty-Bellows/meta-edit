@@ -4,8 +4,7 @@
 	"testsPort": 8239,
 	"plugins": [ "." ],
 	"themes": [],
-	"mappings": {
-	},
+	"mappings": {},
 	"config": {
 		"WP_UPLOAD_MAX_FILESIZE": "128M",
 		"WP_MEMORY_LIMIT": "256M",
