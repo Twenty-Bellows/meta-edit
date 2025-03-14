@@ -9,7 +9,21 @@ function add_sample_meta() {
 	'show_in_rest' => true,
     ));
 
+    register_post_meta('post', 'pikchur', array(
+	'type' => 'string',
+	'description' => 'Pretty Bits',
+	'single' => true,
+	'show_in_rest' => true,
+    ));
+
     register_post_meta('post', 'another_custom_text_field', array(
+	'type' => 'string',
+	'description' => 'Another custom field',
+	'single' => true,
+	'show_in_rest' => true,
+    ));
+
+    register_post_meta('post', 'yet another custom text field', array(
 	'type' => 'string',
 	'description' => 'Another custom field',
 	'single' => true,
@@ -24,10 +38,11 @@ function add_sample_meta() {
     ));
 
     add_post_type_support('post', 'meta-edit', array(
+	'pikchur' => 'media',
 	'a_custom_text_field' => 'text',
 	'another_custom_text_field' => 'textarea',
-	'a_wrong_custom_text_field' => 'text',
 	'a_color_field' => 'color',
+	'yet another custom text field' => 'text',
     ));
 
 }
