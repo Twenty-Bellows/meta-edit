@@ -3,6 +3,7 @@ import MetaFieldsPanel from './metaFieldsPanel';
 require( './field/textarea' );
 require( './field/color' );
 require( './field/media' );
+require( './field/relationship' );
 
 registerPlugin( 'meta-edit', {
 	icon: 'palmtree',

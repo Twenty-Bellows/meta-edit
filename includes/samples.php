@@ -37,12 +37,19 @@ function add_sample_meta() {
 	'show_in_rest' => true,
     ));
 
+    register_post_meta('post', 'friend', array(
+	'type' => 'integer',
+	'description' => 'A Relationship to another post',
+	'single' => true,
+	'show_in_rest' => true,
+    ));
+
     add_post_type_support('post', 'meta-edit', array(
-	'pikchur' => 'media',
+	'friend' => 'post',
 	'a_custom_text_field' => 'text',
 	'another_custom_text_field' => 'textarea',
 	'a_color_field' => 'color',
-	'yet another custom text field' => 'text',
+	'pikchur' => 'media',
     ));
 
 }
