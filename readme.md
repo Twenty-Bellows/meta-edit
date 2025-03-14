@@ -4,7 +4,7 @@ Provide a UI to edit Post Metadata.
 
 ## To Use
 
-This plugin can be (downloaded)[https://github.com/pbking/meta-edit/archive/refs/heads/main.zip], installed and activated. 
+This plugin can be [downloaded](https://github.com/pbking/meta-edit/archive/refs/heads/main.zip), installed and activated. 
 Note that there will NOT be any visible changes until Post Types have been configured.
 
 ### Register Post Meta Fields  
