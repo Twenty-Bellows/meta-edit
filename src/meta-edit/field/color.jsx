@@ -5,15 +5,15 @@ import { addFilter } from '@wordpress/hooks';
 addFilter(
 	'meta-edit.field.component',
 	'meta-edit.field.component.renderer',
-	( renderer, { label, value, type, onChange } ) => {
+	( renderer, { label, value, type, slug, onChange } ) => {
 		if ( type !== 'color' ) {
 			return renderer;
 		}
 		return (
 			<>
-				<Label label={ label } name={ name } />
+				<Label label={ label } name={ slug } />
 				<ColorPalette
-					name={ name }
+					name={ slug }
 					value={ value }
 					onChange={ onChange }
 				/>
