@@ -40,7 +40,7 @@ const MetaFieldsPanel = () => {
 			<div style={ {gap: '16px', display: 'flex', flexDirection: 'column'} }>
 			{ Object.entries( fields )
 				.filter( ( [ key ] ) => {
-					return existingMetaFields[ key ] !== undefined;
+					return key in existingMetaFields;
 				} )
 				.map( ( [ key, value ] ) => {
 					const slug = key;

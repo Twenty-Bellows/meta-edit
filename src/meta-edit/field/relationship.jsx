@@ -40,7 +40,7 @@ addFilter(
 			<ComboboxControl
 				label={ label }
 				value={ parseInt( value ) }
-				onChange={ ( value ) => onChange( value?.toString() ?? '' ) }
+				onChange={ ( value ) => onChange( value?.toString() ?? 0 ) }
 				isLoading={ posts.length === 0 }
 				placeholder={
 					posts.length === 0 ? 'Loading...' : 'Select a ' + type
