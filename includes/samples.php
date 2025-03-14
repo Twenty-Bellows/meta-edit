@@ -18,6 +18,7 @@ function add_sample_meta() {
 
     add_post_type_support('post', 'meta-edit', array(
 	'a_custom_text_field' => 'text',
+	'another_custom_text_field' => 'textarea',
 	'a_wrong_custom_text_field' => 'text'
     ));
 

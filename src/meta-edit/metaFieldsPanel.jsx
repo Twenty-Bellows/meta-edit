@@ -1,28 +1,10 @@
 import { PluginDocumentSettingPanel } from '@wordpress/editor'
 import { useSelect } from '@wordpress/data'
-import { applyFilters } from '@wordpress/hooks'
+import { applyFilters, addFilter } from '@wordpress/hooks'
 import { TextControl } from '@wordpress/components'
-
-const Field = ({ label, value, onChange, name, type }) => {
-  
-  const DefaultComponent = <TextControl label={label} value={value} onChange={onChange} __next40pxDefaultSize __nextHasNoMarginBottom/>;
-
-  return applyFilters(
-    'meta-edit.field.component',
-    DefaultComponent,
-    {
-      label,
-      value,
-      onChange,
-      name,
-      type,
-    }
-  );
-}
 
 const MetaFieldsPanel = () => {
 
-  // Get meta fields from post type
   const postType = useSelect(
     (select) => select('core/editor').getCurrentPostType(),
     []
@@ -63,21 +45,25 @@ const MetaFieldsPanel = () => {
           return existingMetaFields[key] !== undefined;
         })
         .map(([key, value]) => {
-          return (<Field
-            key={key}
-            label={key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}
-            value={existingMetaFields[key] || ''}
-            name={key}
-            type={value}
-            onChange={(newValue) => {
-              // Update in-memory value and save to the database
-              wp.data.dispatch('core/editor').editPost({
-               id: postId,
-               type: postType,
-               meta: { [key]: newValue },
-              })
-            }}
-          />)
+
+          const slug = key;
+          const label = slug.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+          const type  = value;
+          const metaValue = existingMetaFields[key] || '';
+          const onChange = ( newValue ) => {
+		          wp.data.dispatch( 'core/editor' ).editPost( {
+			          id: postId,
+			          type: postType,
+			          meta: { [ key ]: newValue },
+		          } );
+          };
+
+          const renderer = applyFilters( 'meta-edit.field.component', null,
+              { label, value:metaValue, type, slug, onChange }
+          ); 
+
+          return <div key={key}>{renderer}</div>;
+          
         })
       }
     </PluginDocumentSettingPanel>
@@ -85,3 +71,17 @@ const MetaFieldsPanel = () => {
 }
 
 export default MetaFieldsPanel
+
+addFilter( 
+	'meta-edit.field.component', 
+	'meta-edit.field.component.renderer', 
+	( renderer, { label, value, onChange } ) => {
+    return renderer || (<TextControl 
+                          label={label} 
+                          value={value} 
+                          onChange={onChange} 
+                          __next40pxDefaultSize 
+                          __nextHasNoMarginBottom
+                        />);
+	} 
+);
