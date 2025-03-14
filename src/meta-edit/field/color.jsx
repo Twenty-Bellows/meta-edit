@@ -20,6 +20,7 @@ addFilter(
 			<>
 				<Label label={ label } name={ slug } />
 				<ColorPalette
+					clearable={ false }	
 					name={ slug }
 					value={ value }
 					onChange={ onChange }
