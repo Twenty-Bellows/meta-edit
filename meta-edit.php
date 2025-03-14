@@ -30,4 +30,5 @@ add_action('enqueue_block_editor_assets', function () {
 	);
 });
 
-require plugin_dir_path( __FILE__ ) . '/includes/samples.php';
+// Add some sample meta fields to test with
+// require plugin_dir_path( __FILE__ ) . '/includes/samples.php';
