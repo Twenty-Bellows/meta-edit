@@ -8,8 +8,10 @@ const MetaFieldsPanel = () => {
 		( select ) => {
 			const postType = select( 'core/editor' ).getCurrentPostType();
 			const supports = select( 'core' ).getPostType( postType )?.supports;
-			if ( ! supports || ! supports[ 'meta-edit' ] || ! supports[ 'meta-edit' ][ 0 ] ) {
-				return null;
+			if ( ! supports?.[ 'meta-edit' ]?.[ 0 ] ) {
+				return {
+					postType,
+				};
 			}
 			const fields = supports[ 'meta-edit' ][ 0 ];
 			const postId = select( 'core/editor' ).getCurrentPostId();
