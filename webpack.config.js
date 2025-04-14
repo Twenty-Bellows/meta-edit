@@ -1,4 +1,3 @@
-const path = require( 'path' );
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
 defaultConfig[ 0 ] = {

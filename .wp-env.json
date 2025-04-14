@@ -4,7 +4,9 @@
 	"testsPort": 8239,
 	"plugins": [ "." ],
 	"themes": [],
-	"mappings": {},
+	"mappings": {
+		"wp-content/mu-plugins/": "./dev-assets/mu-plugins/"
+	},
 	"config": {
 		"WP_UPLOAD_MAX_FILESIZE": "128M",
 		"WP_MEMORY_LIMIT": "256M",

@@ -25,7 +25,7 @@ register_post_meta('post', 'a_custom_text_field', array(
 
 Now add support for `meta-edit` to the post type.
 
-Pass a configuration of what you wanted edited (and how) via structured array where the custom meta field is the key and the TYPE is the value.
+Pass a configuration of what you want edited (and how) via structured array where the custom meta field is the key and the TYPE is the value.
 
 ```php
 add_post_type_support('post', 'meta-edit', array(

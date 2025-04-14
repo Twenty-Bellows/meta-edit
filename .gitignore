@@ -26,9 +26,11 @@ vendor/
 
 # Output of `wp-scripts plugin-zip`
 *.zip
+release/
 
 # dotenv environment variables file
 .env
+.DS_Store
 
 # Test Artifacts
 artifacts/
