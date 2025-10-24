@@ -4,7 +4,7 @@ defaultConfig[ 0 ] = {
 	...defaultConfig[ 0 ],
 	...{
 		entry: {
-			editor: './src/editor.js',
+			editor: './src/index.js',
 		},
 	},
 };
