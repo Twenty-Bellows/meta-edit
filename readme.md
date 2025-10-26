@@ -1,11 +1,42 @@
 # Meta Edit
 
-Provide a UI to edit Post Metadata.
+Provide a UI to edit Post Metadata in the WordPress block editor.
 
-## To Use
+## Installation
 
-This plugin can be [downloaded](https://github.com/pbking/meta-edit/archive/refs/heads/main.zip), installed and activated. 
-Note that there will NOT be any visible changes until Post Types have been configured.
+Install via npm in your WordPress plugin:
+
+```bash
+npm install @twenty-bellows/meta-edit
+```
+
+## Usage
+
+Import Meta Edit in your plugin's editor JavaScript file:
+
+```javascript
+// src/editor.js (or your editor entry point)
+import '@twenty-bellows/meta-edit';
+
+// Your plugin's other editor code...
+```
+
+Then enqueue your built editor script in your plugin's PHP file:
+
+```php
+add_action('enqueue_block_editor_assets', function() {
+    $assets = include plugin_dir_path(__FILE__) . 'build/editor.asset.php';
+
+    wp_enqueue_script(
+        'your-plugin-editor',
+        plugins_url('build/editor.js', __FILE__),
+        $assets['dependencies'],
+        $assets['version']
+    );
+});
+```
+
+Note that there will NOT be any visible UI until Post Types have been configured as described below.
 
 ### Register Post Meta Fields  
 

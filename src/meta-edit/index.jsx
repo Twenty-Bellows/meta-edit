@@ -8,7 +8,5 @@ import './field/media';
 import './field/relationship';
 
 registerPlugin( 'meta-edit', {
-	icon: 'palmtree',
-	title: 'Meta Edit',
 	render: MetaFieldsPanel,
 } );

@@ -1,0 +1,19 @@
+# Build artifacts
+build/
+release/
+*.zip
+
+# Development files
+node_modules/
+tests/
+dev-assets/
+.git/
+.gitignore
+.wp-env.json
+.prettierrc
+package-lock.json
+webpack.config.js
+plugin-test-blueprint.json
+
+# Documentation (keep readme.md, exclude WordPress.org readme)
+readme.txt
